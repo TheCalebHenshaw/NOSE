@@ -1,0 +1,17 @@
+Notes for the Assessment:
+
+Setup the server and client side files
+
+
+
+Server side info: (Use port 6789)
+
+
+
+
+https://www.geeksforgeeks.org/file-transfer-using-tcp-socket-in-python/
+
+https://docs.python.org/3/library/socket.html
+
+https://www.youtube.com/watch?v=SZyd7xGTBkw
+
