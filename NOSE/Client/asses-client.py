@@ -25,8 +25,10 @@ except Exception as e:
 try:
     cli_sock.send(command.encode())
     if sys.argv[3]=="get": #download
+        print(f"downloading file {sys.argv[4]} ...")
         recv_file(cli_sock,filename)
     if sys.argv[3]=="put": #upload
+        print(f"uploading file {sys.argv[4]} ...")
         send_file(cli_sock,filename)
     if sys.argv[3]=="list": #list the directory
         recv_directory(cli_sock)
