@@ -25,14 +25,16 @@ while True:
         command = commandrecv.decode('utf-8')
         commandsplit = command.split(",")
         filename = commandsplit[1]
-        print(commandsplit)
+        
 
         if commandsplit[0]=="get":
-             print("This occurs")
+             print(f"Download request from client for {filename} ")
              send_file(cli_sock,filename)
         if commandsplit[0]=="put":
+             print(f"Upload request from client for {filename}")
              recv_file(cli_sock, filename)
         if command=="list":
+             print("Directory Listing request from client")
              list_directory(cli_sock)
     except ConnectionResetError as e:
          print("Client closed connection")
