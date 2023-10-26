@@ -1,14 +1,14 @@
 import sys
 import socket
 
-def socket_to_screen(socket, sock_addr):
+def socket_to_screen(socket, sock_addr, mylabel):
 	"""Reads data from a passed socket and prints it on screen.
 
 	Returns either when a newline character is found in the stream or the connection is closed.
         The return value is the total number of bytes received through the socket.
 	The second argument is prepended to the printed data to indicate the sender.
 	"""
-	print(sock_addr + ": ", end="", flush=True) # Use end="" to avoid adding a newline after the communicating partner's info, flush=True to force-print the info
+	print(mylabel + sock_addr + ": ", end="", flush=True) # Use end="" to avoid adding a newline after the communicating partner's info, flush=True to force-print the info
 
 	data = bytearray(1)
 	bytes_read = 0
@@ -33,12 +33,12 @@ def socket_to_screen(socket, sock_addr):
 		bytes_read += len(data)
 	return bytes_read
 
-def keyboard_to_socket(socket):
+def keyboard_to_socket(socket,label):
 	"""Reads data from keyboard and sends it to the passed socket.
 	
 	Returns number of bytes sent, or 0 to indicate the user entered "EXIT"
 	"""
-	print("You: ", end="", flush=True) # Use end="" to avoid adding a newline after the prompt, flush=True to force-print the prompt
+	print(label+ "You: ", end="", flush=True) # Use end="" to avoid adding a newline after the prompt, flush=True to force-print the prompt
 
 	# Read a full line from the keyboard. The returned string will include the terminating newline character.
 	user_input = sys.stdin.readline()
