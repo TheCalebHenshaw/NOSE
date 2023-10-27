@@ -24,7 +24,8 @@ while True:
         commandrecv = cli_sock.recv(1024)
         command = commandrecv.decode('utf-8')
         commandsplit = command.split(",")
-        filename = commandsplit[1]
+        if command !="list":   
+          filename = commandsplit[1]
         
 
         if commandsplit[0]=="get":

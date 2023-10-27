@@ -4,6 +4,7 @@ from asses import send_file,recv_file,recv_directory
 
 if sys.argv[3]!="list":
     command = sys.argv[3]+","+sys.argv[4]
+    filename = sys.argv[4]
 else:
     command = sys.argv[3]
 
@@ -33,8 +34,10 @@ try:
     if sys.argv[3]=="list": #list the directory
         recv_directory(cli_sock)
     
+except ConnectionResetError as e:
+    print(f"Server has closed connection {e}")
 except Exception as e:
-    print(f"Error {e}")
+    print(f"Error occured {e}")
         
 
 

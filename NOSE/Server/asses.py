@@ -2,27 +2,6 @@ import sys
 import socket
 import os
 
-def socket_to_screen(socket, sock_addr):
-    print(sock_addr + ":", end="", flush = True)
-    data = bytearray(1)
-    bytes_read = 0
-
-    while len(data) > 0 and "\n" not in data.decode():
-        data = socket.recv(4096)
-        print(data.decode(), end="")
-        bytes_read +=len(data)
-    return bytes_read
-
-
-def keyboard_to_socket(socket):
-    print( "You: ",end="",flush=True)
-    user_input = sys.stdin.readline()
-    if user_input=="exit\n":
-        return 0
-
-
-    bytes_sent = socket.sendall(str.encode(user_input))
-    return bytes_sent
 
 
 def list_directory(socket):
@@ -56,6 +35,8 @@ def send_file(socket,filename):
         try:
             with open(filename,'rb') as file:
                 file_data = file.read()
+                if not file_data:
+                    raise Exception("File is empty... not sending")
             socket.sendall(file_data)
             print(f"File {filename} sent successfully")
         except Exception as e:
